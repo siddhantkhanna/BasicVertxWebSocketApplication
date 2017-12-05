@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Basic Websocket</title>
+   </head>
+   <body>
+      <div>
+         <input type='text' class='_message' /> <button type='button' onclick='sendMessage();'>Send.</button>
+
+	 <div id='message-area'>
+	   
+	 </div>
+      </div>
+	
+      <script type='text/javascript'>
+        (function(){
+	   var ws = new WebSocket('ws://localhost:7075?name=Sid_' + new Date().getTime());
+
+	   ws.onmessage = function(msg) {
+	      var data = JSON.parse(msg.data);
+	      var m = document.getElementById('message-area');
+	      m.innerHTML += '<div><strong>' + data.name + '</strong><br/><p>' + data.message + '</p></div>';
+	   };
+	   
+	   ws.onerror = function() {
+	      alert('Some error occurred while websocket connection. Reloading...');
+              window.location.reload();
+           }
+
+           window.sendMessage = function() {
+              var i = document.getElementsByClassName('_message')[0];
+	      
+              if (i.value.trim() == '') {
+                 alert('Please enter message!');
+		 return;
+              }
+
+	      var m = document.getElementById('message-area');
+              m.innerHTML += '<div><strong>You</strong><br/><p>' + i.value.trim() + '</p></div>';
+              ws.send(i.value.trim());
+	   };
+	})(); 
+      </script>
+   </body>
+</html>
