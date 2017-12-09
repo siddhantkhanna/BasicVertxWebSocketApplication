@@ -1,4 +1,4 @@
-package com.basic.websocket.application.model;
+package com.siddhant.basicWebsocket.model;
 
 import io.vertx.core.http.ServerWebSocket;
 

@@ -1,6 +1,6 @@
-package com.basic.websocket.application.handler;
+package com.siddhant.basicWebsocket.handler;
 
-import com.basic.websocket.application.model.WebSocketConnection;
+import com.siddhant.basicWebsocket.model.WebSocketConnection;
 import io.vertx.core.Handler;
 import io.vertx.core.http.ServerWebSocket;
 
